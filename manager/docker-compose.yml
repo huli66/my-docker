@@ -14,3 +14,20 @@ services:
       DOCKGE_STACKS_DIR: /opt/stacks
     networks:
       - app_net
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - "9443:9443"   # HTTPS（推荐）
+      - "9000:9000"   # HTTP
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer:/data
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
