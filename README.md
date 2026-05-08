@@ -16,8 +16,6 @@ dockge 管理 docker，占用太多内存，放弃使用
 
 
 
-
-
 ## service
 
 redis
@@ -27,6 +25,8 @@ mysql
 nginx
 
 rabbitmq
+
+adminer 快速管理数据库
 
 ## server
 

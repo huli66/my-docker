@@ -1,0 +1,14 @@
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - /root/ng/data1:/data
+      - /root/ng/config1:/config
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
