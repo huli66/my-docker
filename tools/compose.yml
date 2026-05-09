@@ -17,11 +17,12 @@ services:
     container_name: jupyter
     ports:
       - 4002:8888
+    env_file: ../.env
     volumes:
-      - ../data/jupyter/notebooks:/home/jovyan/work
+      - ../../data/jupyter/notebooks:/home/jovyan/work
     environment:
       - JUPYTER_ENABLE_LAB=yes
-      - JUPYTER_PASSWORD=hjj123
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
     networks:
       - app_net
 

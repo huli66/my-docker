@@ -1,7 +1,6 @@
 services:
   caddy:
-    build: .
-    image: caddy-cloudflare:latest
+    image: caddy:latest
     container_name: caddy
     restart: unless-stopped
     env_file: ../.env

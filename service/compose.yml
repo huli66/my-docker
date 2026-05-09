@@ -4,13 +4,14 @@ services:
     image: redis:7-alpine
     container_name: redis
     restart: unless-stopped
+    env_file: ../.env
     ports:
       - "5000:6379"
     volumes:
-      - ./data/redis:/data
-    command: redis-server --appendonly yes --requirepass hjj123
+      - ../../data/redis:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
     healthcheck:
-      test: ["CMD", "redis-cli", "--no-auth-warning", "-a", "hjj123", "ping"]
+      test: ["CMD", "redis-cli", "--no-auth-warning", "-a", "${REDIS_PASSWORD}", "ping"]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -24,24 +25,25 @@ services:
     image: mysql:8.0
     container_name: mysql
     restart: unless-stopped
+    env_file: ../.env
     ports:
       - "5001:3306"
     volumes:
-      - ../data/mysql:/var/lib/mysql
+      - ../../data/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: hjj123
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: mydb
       MYSQL_USER: myuser
-      MYSQL_PASSWORD: hjj123
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       TZ: Asia/Shanghai
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p'hjj123'"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 15s
       timeout: 5s
       retries: 5
     networks:
       - app_net
-  
+
   adminer:
     image: adminer:latest
     container_name: adminer
@@ -62,14 +64,15 @@ services:
     image: rabbitmq:3-management-alpine
     container_name: rabbitmq
     restart: unless-stopped
+    env_file: ../.env
     ports:
       - "5003:5672"    # AMQP
       - "5004:15672"  # Management Web UI
     volumes:
-      - ../data/rabbitmq:/var/lib/rabbitmq
+      - ../../data/rabbitmq:/var/lib/rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: hjj123
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 15s
