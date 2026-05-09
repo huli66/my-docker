@@ -1,3 +1,18 @@
 huli66.com {
     reverse_proxy host.docker.internal:3000
 }
+
+blog.huli66.com {
+    reverse_proxy host.docker.internal:3000
+}
+
+jupyter.huli66.com {
+    reverse_proxy host.docker.internal:8888
+}
+
+docker.huli66.com {
+    reverse_proxy host.docker.internal:9000
+}
+dozzle.huli66.com {
+    reverse_proxy host.docker.internal:8080
+}
