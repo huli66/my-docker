@@ -1,5 +1,5 @@
 (auth) {
-    basicauth {
+    basic_auth {
         huli $2a$14$YFUZsicHYLruGi4YMwhk6esLPb726gGICfkoEjXVNrlH991zxetqS
     }
 }
