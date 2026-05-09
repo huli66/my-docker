@@ -21,6 +21,7 @@
 
 huli66.us {
     import cf_tls
+    import auth
     reverse_proxy portainer:9000
 }
 
@@ -32,10 +33,12 @@ blog.huli66.us {
 # manager
 docker.huli66.us {
     import cf_tls
+    import auth
     reverse_proxy portainer:9000
 }
 dozzle.huli66.us {
     import cf_tls
+    import auth
     reverse_proxy dozzle:8080
 }
 
@@ -47,15 +50,19 @@ speedtest.huli66.us {
 jupyter.huli66.us {
     import cf_tls
     import auth
-    reverse_proxy jupyter:8888
+    reverse_proxy jupyter:8888 {
+        header_down -WWW-Authenticate
+    }
 }
 
 # service
 mysql.huli66.us {
     import cf_tls
+    import auth
     reverse_proxy adminer:8080
 }
 mq.huli66.us {
     import cf_tls
+    import auth
     reverse_proxy rabbitmq:15672
 }
