@@ -21,6 +21,7 @@ services:
       - ../data/jupyter/notebooks:/home/jovyan/work
     environment:
       - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_PASSWORD=hjj123
     networks:
       - app_net
 

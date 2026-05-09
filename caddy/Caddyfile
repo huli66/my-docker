@@ -49,7 +49,6 @@ speedtest.huli66.us {
 }
 jupyter.huli66.us {
     import cf_tls
-    import auth
     reverse_proxy jupyter:8888 {
         header_down -WWW-Authenticate
     }
