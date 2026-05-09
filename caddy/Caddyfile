@@ -1,18 +1,47 @@
-huli66.com {
+(auth) {
+    basicauth {
+        huli $2a$14$YFUZsicHYLruGi4YMwhk6esLPb726gGICfkoEjXVNrlH991zxetqS
+    }
+}
+
+# (proxy) {
+#     reverse_proxy host.docker.internal:{args[0]}
+# }
+
+# (auth_proxy) {
+#     import auth
+#     reverse_proxy host.docker.internal:{args[0]}
+# }
+
+huli66.us {
     reverse_proxy host.docker.internal:3000
 }
 
-blog.huli66.com {
+blog.huli66.us {
+    reverse_proxy host.docker.internal:4000
+}
+
+# manager
+docker.huli66.us {
     reverse_proxy host.docker.internal:3000
 }
-
-jupyter.huli66.com {
-    reverse_proxy host.docker.internal:8888
+dozzle.huli66.us {
+    reverse_proxy host.docker.internal:3003
 }
 
-docker.huli66.com {
-    reverse_proxy host.docker.internal:9443
+# tool
+speedtest.huli66.us {
+    reverse_proxy host.docker.internal:4000
 }
-dozzle.huli66.com {
-    reverse_proxy host.docker.internal:8080
+jupyter.huli66.us {
+    import auth
+    reverse_proxy host.docker.internal:4002
+}
+
+# service
+mysql.huli66.us {
+    reverse_proxy host.docker.internal:5002
+}
+mq.huli66.us {
+    reverse_proxy host.docker.internal:5004
 }
