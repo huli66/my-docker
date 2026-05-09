@@ -21,12 +21,12 @@
 
 huli66.us {
     import cf_tls
-    reverse_proxy host.docker.internal:3001
+    reverse_proxy portainer:9000
 }
 
 blog.huli66.us {
     import cf_tls
-    reverse_proxy host.docker.internal:4000
+    reverse_proxy openspeedtest:3000
 }
 
 # manager
@@ -42,7 +42,7 @@ dozzle.huli66.us {
 # tool
 speedtest.huli66.us {
     import cf_tls
-    reverse_proxy host.docker.internal:4000
+    reverse_proxy openspeedtest:3000
 }
 jupyter.huli66.us {
     import cf_tls
@@ -53,9 +53,9 @@ jupyter.huli66.us {
 # service
 mysql.huli66.us {
     import cf_tls
-    reverse_proxy host.docker.internal:5002
+    reverse_proxy adminer:8080
 }
 mq.huli66.us {
     import cf_tls
-    reverse_proxy host.docker.internal:5004
+    reverse_proxy rabbitmq:15672
 }
