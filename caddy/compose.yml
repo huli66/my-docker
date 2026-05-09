@@ -1,8 +1,11 @@
 services:
   caddy:
-    image: caddy:latest
+    build: .
+    image: caddy-cloudflare:latest
     container_name: caddy
     restart: unless-stopped
+    environment:
+      - CF_API_TOKEN=${CF_API_TOKEN}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:

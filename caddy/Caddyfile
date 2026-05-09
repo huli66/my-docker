@@ -4,6 +4,12 @@
     }
 }
 
+(cf_tls) {
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
+}
+
 # (proxy) {
 #     reverse_proxy host.docker.internal:{args[0]}
 # }
@@ -14,34 +20,42 @@
 # }
 
 huli66.us {
-    reverse_proxy host.docker.internal:3000
+    import cf_tls
+    reverse_proxy host.docker.internal:3001
 }
 
 blog.huli66.us {
+    import cf_tls
     reverse_proxy host.docker.internal:4000
 }
 
 # manager
 docker.huli66.us {
-    reverse_proxy host.docker.internal:3000
+    import cf_tls
+    reverse_proxy portainer:9000
 }
 dozzle.huli66.us {
-    reverse_proxy host.docker.internal:3003
+    import cf_tls
+    reverse_proxy dozzle:8080
 }
 
 # tool
 speedtest.huli66.us {
+    import cf_tls
     reverse_proxy host.docker.internal:4000
 }
 jupyter.huli66.us {
+    import cf_tls
     import auth
-    reverse_proxy host.docker.internal:4002
+    reverse_proxy jupyter:8888
 }
 
 # service
 mysql.huli66.us {
+    import cf_tls
     reverse_proxy host.docker.internal:5002
 }
 mq.huli66.us {
+    import cf_tls
     reverse_proxy host.docker.internal:5004
 }
