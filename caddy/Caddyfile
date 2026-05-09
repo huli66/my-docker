@@ -11,7 +11,7 @@ jupyter.huli66.com {
 }
 
 docker.huli66.com {
-    reverse_proxy host.docker.internal:9000
+    reverse_proxy host.docker.internal:9443
 }
 dozzle.huli66.com {
     reverse_proxy host.docker.internal:8080

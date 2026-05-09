@@ -8,7 +8,12 @@ services:
       - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - /root/ng/data1:/data
-      - /root/ng/config1:/config
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - ../data/caddy/data:/data
+      - ../data/caddy/config:/config
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    name: app_net
+    driver: bridge
